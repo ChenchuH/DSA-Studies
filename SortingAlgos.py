@@ -36,9 +36,38 @@ def insertion_sort(arr):
         arr[j+1] = val #assigns value of arr[i] to the index left of arr[j]
     return arr
 
+#Split array until its only 1 element per sub array, then reassembly in order "merge"
+#We split until each element is alone (already sorted), then merge them in order.
+def merge_sort(arr):
+    merged = []
+    i=0
+    j=0
 
+    if len(arr)<=1:
+        return arr
+    mid = len(arr)//2
+    left = arr[:mid]
+    right = arr[mid:]
 
+    right = merge_sort(right)
+    left = merge_sort(left)
+
+    while i < len(left) and j <len(right):
+        if left[i]<=right[i]:
+            merged.append(left[i])
+            i+=1
+        else:
+            merged.append(right[j])
+            i+=1
+    merged.extend(left[i:])
+    merged.extend(right[j:])
+    return merged
+  
 arr = array_gen(10)
+merge_sort = merge_sort(arr)
+
+print(merge_sort)
+'''
 bubble_sort = bubble_sort(arr)
 selection_sort = selection_sort(arr)
 insertion_sort = insertion_sort(arr)
@@ -46,3 +75,4 @@ print(f"Original array",arr)
 print(f"Bubble sort: ",bubble_sort)
 print(f"Selection sort: ",selection_sort)
 print(f"Insertion sort: ",insertion_sort)
+'''
