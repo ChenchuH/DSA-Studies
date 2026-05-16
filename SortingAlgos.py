@@ -75,11 +75,7 @@ def quick_sort(arr): #organizes around a pivot, fastest and most efficent algo
     arr = left + pivot + right
     return quick_sort(left) + pivot + quick_sort(right)
 
-
-
-
 import time
-
 arr = array_gen(10000)
 
 start = time.time()
@@ -113,7 +109,6 @@ times = {
 fastest = min(times, key=times.get)
 
 for sort_name, sort_time in times.items():
-
     if sort_name == fastest:
         print(f"{sort_name} sort time: {sort_time:.6f} seconds <-- FASTEST")
     else:
