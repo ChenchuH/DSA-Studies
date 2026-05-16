@@ -53,26 +53,24 @@ def merge_sort(arr):
     left = merge_sort(left)
 
     while i < len(left) and j <len(right):
-        if left[i]<=right[i]:
+        if left[i]<=right[j]:
             merged.append(left[i])
             i+=1
         else:
             merged.append(right[j])
-            i+=1
+            j+=1
     merged.extend(left[i:])
     merged.extend(right[j:])
     return merged
   
 arr = array_gen(10)
-merge_sort = merge_sort(arr)
-
-print(merge_sort)
-'''
-bubble_sort = bubble_sort(arr)
-selection_sort = selection_sort(arr)
-insertion_sort = insertion_sort(arr)
+merge_sorted = merge_sort(arr)
+bubble_sorted = bubble_sort(arr)
+selection_sorted = selection_sort(arr)
+insertion_sorted = insertion_sort(arr)
 print(f"Original array",arr)
-print(f"Bubble sort: ",bubble_sort)
-print(f"Selection sort: ",selection_sort)
-print(f"Insertion sort: ",insertion_sort)
-'''
+print(f"Bubble sort: ",bubble_sorted)
+print(f"Selection sort: ",selection_sorted)
+print(f"Insertion sort: ",insertion_sorted)
+print(f"Merge sort: ",merge_sorted)
+
