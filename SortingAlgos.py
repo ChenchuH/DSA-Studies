@@ -63,14 +63,31 @@ def merge_sort(arr):
     merged.extend(right[j:])
     return merged
   
+def quick_sort(arr):
+
+    if len(arr)<=1:
+        return arr
+    pivot_val = random.choice(arr) #chooses a random pivot val
+    left = [x for x in arr if x<pivot_val]
+    pivot = [x for x in arr if x==pivot_val]
+    right = [x for x in arr if x>pivot_val]
+
+    arr = left + pivot + right
+    return quick_sort(left) + pivot + quick_sort(right)
+
+
+
+
 arr = array_gen(10)
 merge_sorted = merge_sort(arr)
 bubble_sorted = bubble_sort(arr)
 selection_sorted = selection_sort(arr)
 insertion_sorted = insertion_sort(arr)
+quick_sorted= quick_sort(arr)
 print(f"Original array",arr)
 print(f"Bubble sort: ",bubble_sorted)
 print(f"Selection sort: ",selection_sorted)
 print(f"Insertion sort: ",insertion_sorted)
 print(f"Merge sort: ",merge_sorted)
+print(f"Quick sort: ", quick_sorted)
 
