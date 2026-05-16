@@ -63,9 +63,9 @@ def merge_sort(arr):
     merged.extend(right[j:])
     return merged
   
-def quick_sort(arr):
+def quick_sort(arr): #organizes around a pivot, fastest and most efficent algo 
 
-    if len(arr)<=1:
+    if len(arr)<=1: #recursive stopping algo
         return arr
     pivot_val = random.choice(arr) #chooses a random pivot val
     left = [x for x in arr if x<pivot_val]
@@ -78,16 +78,43 @@ def quick_sort(arr):
 
 
 
-arr = array_gen(10)
-merge_sorted = merge_sort(arr)
-bubble_sorted = bubble_sort(arr)
-selection_sorted = selection_sort(arr)
-insertion_sorted = insertion_sort(arr)
-quick_sorted= quick_sort(arr)
-print(f"Original array",arr)
-print(f"Bubble sort: ",bubble_sorted)
-print(f"Selection sort: ",selection_sorted)
-print(f"Insertion sort: ",insertion_sorted)
-print(f"Merge sort: ",merge_sorted)
-print(f"Quick sort: ", quick_sorted)
+import time
 
+arr = array_gen(10000)
+
+start = time.time()
+bubble_sorted = bubble_sort(arr)
+bubble_time = end = time.time() - start
+
+start = time.time()
+selection_sorted = selection_sort(arr)
+selection_time = end = time.time() - start
+
+start = time.time()
+insertion_sorted = insertion_sort(arr)
+insertion_time = end = time.time() - start
+
+start = time.time()
+merge_sorted = merge_sort(arr)
+merge_time = end = time.time() - start
+
+start = time.time()
+quick_sorted = quick_sort(arr)
+quick_time = end = time.time() - start
+
+times = {
+    "Bubble": bubble_time,
+    "Selection": selection_time,
+    "Insertion": insertion_time,
+    "Merge": merge_time,
+    "Quick": quick_time
+}
+
+fastest = min(times, key=times.get)
+
+for sort_name, sort_time in times.items():
+
+    if sort_name == fastest:
+        print(f"{sort_name} sort time: {sort_time:.6f} seconds <-- FASTEST")
+    else:
+        print(f"{sort_name} sort time: {sort_time:.6f} seconds")
