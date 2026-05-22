@@ -10,22 +10,43 @@ Finally, they are great for creating explicit pointer relationships between data
 important to note, these are not good for random access, data needs to traverse to a given point. Ex. arr[500] is fast but if you were to look into that in a linked list if would need to traverse through all points to get to the 500th term. 
 '''
 
-
+#defining a class in python
 class Node:
     def __init__(self,data):
         self.data = data
         self.next = None
 
-        
 node1 = Node(10)
 node2 = Node(20)
 node3 = Node(30)
+node4 = Node(40)
 
 node1.next = node2
 node2.next = node3
+node3.next = node4
 
-print(node1.data)
+def printlist(head):
+    current = head 
 
-print(node1.next.data)
+    while current:
+        print(current.data, end=" -> ")
+        current = current.next
+    
+    print("End")
 
-print(node1.next.next.data)
+
+def reverse_list(head):
+    prev = None
+    current = head
+
+    while current:
+        next_node = current.next
+        current.next = prev
+        prev = current
+        current = next_node
+    return prev
+
+printlist(node1)
+
+new_head = reverse_list(node1)
+printlist(new_head)
